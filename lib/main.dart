@@ -17,17 +17,8 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.deepPurpleAccent,
       ),
       body: Center(
-        child: Text(
-          "Text widget\ninside\nCenter widget",
-          style: TextStyle(
-            color: Colors.lightGreen[800],
-            fontFamily: 'IndieFlower',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-          ),
+        child: Image.asset('assets/images/mountain1.jpg'),
         ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Text("Button"),
