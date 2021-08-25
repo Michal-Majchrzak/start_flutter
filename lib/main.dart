@@ -17,8 +17,14 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.deepPurpleAccent,
       ),
       body: Center(
-        child: Image.asset('assets/images/mountain1.jpg'),
+        child: ElevatedButton.icon(
+            onPressed: () => print("You Pressed Add Button!"),
+            icon: Icon(
+              Icons.add_circle_outline,
+            ),
+            label: Text("Add"),
         ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Text("Button"),
