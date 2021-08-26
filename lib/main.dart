@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'dart:math';
 
 void main() {
   runApp(MaterialApp(
@@ -8,8 +9,26 @@ void main() {
 }
 
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<int> randomExchangeRates = [1, 2, 3, 4];
+
+  List<int> generateRandomRates() {
+    List<int> returnList = [0, 0, 0, 0];
+    Random random = Random();
+    int min = 1;
+    int max = 100;
+    for (int i = 0; i < returnList.length; i++) {
+      returnList[i] = min + random.nextInt(max - min);
+    }
+    return returnList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +96,7 @@ class Home extends StatelessWidget {
                           height: 16.0,
                         ),
                         Text(
-                          "4.5684",
+                          "${randomExchangeRates[0]}",
                           style: TextStyle(
                             fontSize: 28.0,
                           ),
@@ -132,7 +151,7 @@ class Home extends StatelessWidget {
                           height: 16.0,
                         ),
                         Text(
-                          "3.5004",
+                          "${randomExchangeRates[1]}",
                           style: TextStyle(
                             fontSize: 28.0,
                           ),
@@ -187,7 +206,7 @@ class Home extends StatelessWidget {
                           height: 16.0,
                         ),
                         Text(
-                          "2.3384",
+                          "${randomExchangeRates[2]}",
                           style: TextStyle(
                             fontSize: 28.0,
                           ),
@@ -242,7 +261,7 @@ class Home extends StatelessWidget {
                           height: 16.0,
                         ),
                         Text(
-                          "0.005684",
+                          "${randomExchangeRates[3]}",
                           style: TextStyle(
                             fontSize: 28.0,
                           ),
@@ -258,7 +277,9 @@ class Home extends StatelessWidget {
         )
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () => setState(() {
+          randomExchangeRates = generateRandomRates();
+        }),
         child: Icon(
           Icons.refresh,
         ),
