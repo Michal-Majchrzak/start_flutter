@@ -53,226 +53,10 @@ class _HomeState extends State<Home> {
               ],
             ),
             Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    //color: Colors.grey,
-                    child: Column(
-                      children: [
-                        Text(
-                          "EUR",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "1.00",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    //color: Colors.lime,
-                    child: Column(
-                      children: [
-                        Text(
-                          "PLN",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "${randomExchangeRates[0]}",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    //color: Colors.grey,
-                    child: Column(
-                      children: [
-                        Text(
-                          "USD",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "1.00",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    //color: Colors.lime,
-                    child: Column(
-                      children: [
-                        Text(
-                          "PLN",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "${randomExchangeRates[1]}",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    //color: Colors.grey,
-                    child: Column(
-                      children: [
-                        Text(
-                          "AUD",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "1.00",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    //color: Colors.lime,
-                    child: Column(
-                      children: [
-                        Text(
-                          "PLN",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "${randomExchangeRates[2]}",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    //color: Colors.grey,
-                    child: Column(
-                      children: [
-                        Text(
-                          "CHF",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "1.00",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    //color: Colors.lime,
-                    child: Column(
-                      children: [
-                        Text(
-                          "PLN",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          "${randomExchangeRates[3]}",
-                          style: TextStyle(
-                            fontSize: 28.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(),
+            ExchangeRow(randomExchangeRates: randomExchangeRates[0]),
+            ExchangeRow(randomExchangeRates: randomExchangeRates[1]),
+            ExchangeRow(randomExchangeRates: randomExchangeRates[2]),
+            ExchangeRow(randomExchangeRates: randomExchangeRates[3]),
           ],
         )
       ),
@@ -284,6 +68,73 @@ class _HomeState extends State<Home> {
           Icons.refresh,
         ),
       ),
+    );
+  }
+}
+
+class ExchangeRow extends StatelessWidget {
+  const ExchangeRow({
+    Key? key,
+    required this.randomExchangeRates,
+  }) : super(key: key);
+
+  final int randomExchangeRates;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            //color: Colors.grey,
+            child: Column(
+              children: [
+                Text(
+                  "EUR",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  "1.00",
+                  style: TextStyle(
+                    fontSize: 28.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            //color: Colors.lime,
+            child: Column(
+              children: [
+                Text(
+                  "PLN",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  "$randomExchangeRates",
+                  style: TextStyle(
+                    fontSize: 28.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
