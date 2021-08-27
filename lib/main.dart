@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'dart:math';
 
 void main() {
@@ -37,28 +36,17 @@ class _HomeState extends State<Home> {
         title: Text("Current Exchange Rates"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(24.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Row(
-              children: [
-                Text("Table no."),
-                Text("165/A/NBP/2021"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("Table date"),
-                Text("26.08.2021"),
-              ],
-            ),
+            HeaderRow(tableName: "165/A/NBP/2021", tableDate: "26.08.2021",),
             Divider(),
-            ExchangeRow(randomExchangeRates: randomExchangeRates[0]),
-            ExchangeRow(randomExchangeRates: randomExchangeRates[1]),
-            ExchangeRow(randomExchangeRates: randomExchangeRates[2]),
-            ExchangeRow(randomExchangeRates: randomExchangeRates[3]),
+            CurrencyCard(currencyCode: "EUR", currencyName: "euro", randomExchangeRates: randomExchangeRates[0],),
+            CurrencyCard(currencyCode: "USD", currencyName: "united states dolar", randomExchangeRates: randomExchangeRates[1],),
+            CurrencyCard(currencyCode: "AUD", currencyName: "australian dolar", randomExchangeRates: randomExchangeRates[2],),
+            CurrencyCard(currencyCode: "NOK", currencyName: "norwegian koron", randomExchangeRates: randomExchangeRates[3],),
           ],
-        )
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
@@ -72,69 +60,136 @@ class _HomeState extends State<Home> {
   }
 }
 
-class ExchangeRow extends StatelessWidget {
-  const ExchangeRow({
+class CurrencyCard extends StatelessWidget {
+  final int randomExchangeRates;
+  final String currencyCode;
+  final String currencyName;
+
+  const CurrencyCard({
     Key? key,
     required this.randomExchangeRates,
+    required this.currencyCode,
+    required this.currencyName,
   }) : super(key: key);
 
-  final int randomExchangeRates;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 1.5,
+      child: Padding(
+        padding: EdgeInsets.all(21.0),
+        child: Row(
+          children: [
+            Expanded(
+                flex: 1,
+                child: Container(
+                  //color: Colors.lime,
+                  child: Icon(
+                      Icons.account_balance_outlined
+                  ),
+                ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                //color: Colors.amber,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      currencyCode,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 26.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2.0,
+                    ),
+                    Text(
+                      currencyName,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                //color: Colors.red,
+                child: Text("$randomExchangeRates"),
+              ),
+            ),
+          ],
+          ),
+        ),
+      );
+  }
+}
+
+class HeaderRow extends StatelessWidget {
+  final String tableName;
+  final String tableDate;
+
+  const HeaderRow({
+    Key? key,
+    required this.tableName,
+    required this.tableDate
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          child: Container(
-            //color: Colors.grey,
-            child: Column(
-              children: [
-                Text(
-                  "EUR",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                Text(
-                  "1.00",
-                  style: TextStyle(
-                    fontSize: 28.0,
-                  ),
-                ),
-              ],
-            ),
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 16.0, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderText(text: "Table no", textColor: Colors.black54,),
+              SizedBox(height: 4.0,),
+              HeaderText(text: "Table date", textColor: Colors.black54,),
+            ],
           ),
         ),
         Expanded(
-          child: Container(
-            //color: Colors.lime,
-            child: Column(
-              children: [
-                Text(
-                  "PLN",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                Text(
-                  "$randomExchangeRates",
-                  style: TextStyle(
-                    fontSize: 28.0,
-                  ),
-                ),
-              ],
-            ),
+          flex: 3,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderText(text: tableName, textColor: Colors.black,),
+              SizedBox(height: 4.0,),
+              HeaderText(text: tableDate, textColor: Colors.black,),
+            ],
           ),
         ),
       ],
+    );
+  }
+}
+
+class HeaderText extends StatelessWidget {
+  final String text;
+  final Color textColor;
+  const HeaderText({
+    Key? key,
+    required this.text,
+    required this.textColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 }
