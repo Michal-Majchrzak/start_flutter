@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:start_flutter/routes.dart';
-import 'package:start_flutter/currency.dart';
+import 'package:start_flutter/models/currency.dart';
 
 class CurrencyList extends StatelessWidget {
   final List<Currency> currencies;
