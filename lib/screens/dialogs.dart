@@ -9,8 +9,8 @@ class Routes {
         builder: (BuildContext context) {
           return DatePickerDialog(
             initialDate: DateTime.fromMillisecondsSinceEpoch(arguments! as int),
-            firstDate: DateTime(2021, 1, 1),
-            lastDate: DateTime(2022, 1, 1),);
+            firstDate: DateTime(2002, 1, 2),
+            lastDate: DateTime.now(),);
         }
     );
   }
@@ -43,6 +43,20 @@ class Routes {
                 child: const Text("Table C"),
               ),
             ],
+          );
+        }
+    );
+  }
+
+  static Route aboutDialogRoute(
+      BuildContext context,
+      ) {
+    return DialogRoute(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Text("About"),
+            titlePadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
           );
         }
     );

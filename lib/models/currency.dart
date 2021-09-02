@@ -8,7 +8,8 @@ class Currency {
   Currency(this.name, this.code, this.rate);
 
   static List<Currency> nbpJson2List(String json) {
-    Map map = jsonDecode(json);
+    List list_raw = jsonDecode(json);
+    Map map = list_raw[0];
     List<Currency> list = [];
     for (Map rate in map['rates']){
       list.add(
